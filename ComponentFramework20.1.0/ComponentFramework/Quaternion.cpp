@@ -107,3 +107,14 @@ void Quaternion::operator=(const Quaternion& other) {
 	imaginary = other.imaginary;
 	w = other.w;
 }
+
+
+Quaternion Quaternion::operator*(const float& scalar) const {
+	/* multiply overload */
+	Quaternion ans;
+
+	ans.w = w * scalar;
+	ans.imaginary = imaginary * scalar;
+
+	return ans;
+}

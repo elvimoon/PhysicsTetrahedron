@@ -1,6 +1,7 @@
 #ifndef TETRAHEDRON_H
 #define TETRAHEDRON_H
 #include <glew.h>
+#include "Quaternion.h"
 #include "Matrix.h"
 #include "Mesh.h"
 #include "Shader.h"
@@ -20,6 +21,7 @@ private:
 	Mesh* mesh;
 	Shader* shader;
 	Texture* texture;
+	Quaternion quaternion;
 
 public:
 	Tetrahedron(Mesh* mesh_, Shader* shader_, Texture* texture_);

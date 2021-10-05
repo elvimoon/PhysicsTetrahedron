@@ -15,6 +15,8 @@ struct Quaternion {
 
 	Quaternion operator+(const Quaternion& other) const;
 	Quaternion operator*(const Quaternion& other) const;
+	Quaternion operator*(const float& scalar) const;
+
 	void Normalize();
 	float Magnitude() const;
 	float DotProduct(const Quaternion& other) const;

@@ -46,7 +46,7 @@ bool Scene5::OnCreate() {
 		Debug::FatalError("GameObject could not be created", __FILE__, __LINE__);
 		return false;
 	}
-	tetrahedron->setPos(Vec3(-5.0, 0.0, 0.0));
+	tetrahedron->setPos(Vec3(-6.0, 0.0, 0.0));
 	tetrahedron->setModelMatrix(MMath::translate(tetrahedron->getPos()));
 
 	tetrahedron2 = new Tetrahedron(meshPtr, shaderPtr, texturePtr);
@@ -54,7 +54,7 @@ bool Scene5::OnCreate() {
 		Debug::FatalError("GameObject could not be created", __FILE__, __LINE__);
 		return false;
 	}
-	tetrahedron2->setPos(Vec3(5.0, 0.0, 0.0));
+	tetrahedron2->setPos(Vec3(6.0, 0.0, 0.0));
 	tetrahedron2->setModelMatrix(MMath::translate(tetrahedron->getPos()));
 
 
