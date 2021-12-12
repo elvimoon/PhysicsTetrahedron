@@ -37,6 +37,7 @@ public:
 	inline Shader* getShader() const { return shader; }
 	inline void setModelMatrix(const Matrix4& modelMatrix_) { modelMatrix = modelMatrix_; }
 	inline const Matrix4& getModelMatrix() { return modelMatrix; }
+	std::vector<Vec3> getShape() const;
 };
 
 #endif

@@ -11,6 +11,7 @@
 #include "MMath.h"
 #include "Debug.h"
 #include "Physics.h"
+#include "CollisionPhysics.h"
 
 Scene5::Scene5() : camera(nullptr), tetrahedron(nullptr), tetrahedron2(nullptr), meshPtr(nullptr), shaderPtr(nullptr), texturePtr(nullptr) {
 	Debug::Info("Created Scene0: ", __FILE__, __LINE__);
@@ -57,6 +58,17 @@ bool Scene5::OnCreate() {
 	tetrahedron2->setPos(Vec3(6.0, 0.0, 0.0));
 	tetrahedron2->setModelMatrix(MMath::translate(tetrahedron->getPos()));
 
+	//std::vector<Vec3> shapeA;
+	//shapeA.push_back(Vec3(0.5f, 0.8f, 0.3f));
+	//shapeA.push_back(Vec3(0.0f, 0.0f, 0.0f));
+	//shapeA.push_back(Vec3(0.5f, 0.0f, 0.9f));
+	//shapeA.push_back(Vec3(1.0f, 0.0f, 0.0f));
+	//std::vector<Vec3> shapeB;
+	//shapeB.push_back(Vec3(0.5f, 0.1f, 0.3f));
+	//shapeB.push_back(Vec3(0.0f, -0.7f, 0.0f));
+	//shapeB.push_back(Vec3(0.5f, -0.7f, 0.9f));
+	//shapeB.push_back(Vec3(1.0f, -0.7f, 0.0f));
+	//CollisionPhysics::GJKDetection(shapeA, shapeB);
 
 	return true;
 }
@@ -68,6 +80,9 @@ void Scene5::HandleEvents(const SDL_Event& sdlEvent) {
 void Scene5::Update(const float deltaTime) {
 	tetrahedron->Update(deltaTime);
 	tetrahedron2->Update2(deltaTime);
+	if (CollisionPhysics::GJKDetection(tetrahedron->getShape(), tetrahedron2->getShape())) {
+		std::cout << "Collison Detected" << std::endl;
+	}
 }
 
 void Scene5::Render() const {

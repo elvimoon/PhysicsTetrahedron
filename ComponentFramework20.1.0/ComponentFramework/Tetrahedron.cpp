@@ -106,3 +106,13 @@ void Tetrahedron::Render() const {
 }
 
 void Tetrahedron::HandleEvents(const SDL_Event& event) {} /// Just a stub
+
+std::vector<Vec3> Tetrahedron::getShape() const
+{
+	std::vector<Vec3> points;
+	points.reserve(mesh->vertices.size());
+	for (auto v : mesh->vertices) {
+		points.push_back(modelMatrix * v);
+	}
+	return points;
+}
