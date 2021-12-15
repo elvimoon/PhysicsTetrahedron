@@ -68,7 +68,9 @@ bool Scene5::OnCreate() {
 	//shapeB.push_back(Vec3(0.0f, -0.7f, 0.0f));
 	//shapeB.push_back(Vec3(0.5f, -0.7f, 0.9f));
 	//shapeB.push_back(Vec3(1.0f, -0.7f, 0.0f));
-	//CollisionPhysics::GJKDetection(shapeA, shapeB);
+	//if (CollisionPhysics::GJKDetection(shapeA, shapeB)) {
+	//	std::cout << "Test Case True" << std::endl;
+	//}
 
 	return true;
 }

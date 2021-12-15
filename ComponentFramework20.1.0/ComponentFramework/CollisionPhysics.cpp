@@ -52,7 +52,6 @@ bool CollisionPhysics::GJKDetection(const std::vector<Vec3>& shapeA, const std::
 			return false;
 		}
 		simplex.points.push_back(lastPoint); //simplex d
-
 		
 		int retry = 0;
 		glm::mat4 matrix;
@@ -62,10 +61,13 @@ bool CollisionPhysics::GJKDetection(const std::vector<Vec3>& shapeA, const std::
 		matrix[1] = glm::vec4(simplex.points[1].x, simplex.points[1].y, simplex.points[1].z, 1.0f);
 		matrix[2] = glm::vec4(simplex.points[2].x, simplex.points[2].y, simplex.points[2].z, 1.0f);
 		matrix[3] = glm::vec4(simplex.points[3].x, simplex.points[3].y, simplex.points[3].z, 1.0f);
+		glm::mat4 detMat = glm::transpose(matrix);
 		float det0 = glm::determinant(matrix);
+
 		for (int i = 0; i < 4; i++) {
 			glm::mat4 testMatrix = matrix;
 			testMatrix[i] = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+			testMatrix = glm::transpose(testMatrix);
 			if (glm::determinant(testMatrix) * det0 > 0) {
 				count++;
 			}
@@ -76,8 +78,8 @@ bool CollisionPhysics::GJKDetection(const std::vector<Vec3>& shapeA, const std::
 		simplex.points.erase(simplex.points.begin() + retry);
 		ab = simplex.points.at(0) - simplex.points.at(1);
 		ac = simplex.points.at(0) - simplex.points.at(2);
-	} while (count < 4);
-	return true;
+	} while (count == 3);
+	return (count > 3);
 }
 
 Vec3 CollisionPhysics::GetPointInDirection(const std::vector<Vec3>& shapeA, const std::vector<Vec3>& shapeB, const Vec3& direction)
